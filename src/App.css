@@ -269,7 +269,7 @@
 }
 
 .weather-card.drizzle {
-  background: url('/images/drizzle.jpg.jpg') center/cover no-repeat;
+  background: url('/images/drizzle.jpg') center/cover no-repeat;
 }
 
 .weather-card.mist {
