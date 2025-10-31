@@ -291,3 +291,45 @@ html {
     padding-top: 140px; /* Extra space for mobile navbar height */
   }
 }
+.mic-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  font-size: 20px;
+  color: #3b82f6; /* soft blue */
+}
+
+.mic-btn:hover {
+  background-color: rgba(59, 130, 246, 0.1); /* light blue hover */
+  transform: scale(1.05);
+}
+
+.mic-btn:active {
+  transform: scale(0.95);
+}
+
+.mic-btn.listening {
+  color: red;
+  animation: pulse 1s infinite;
+}
+
+/* simple pulsing animation when listening */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+  }
+}
