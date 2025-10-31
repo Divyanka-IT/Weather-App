@@ -41,6 +41,8 @@ const startListening = () => {
       if (data.cod === 200) {
         setWeather(data);
         setCity("");
+        showWeatherAlert(data.weather[0].main.toLowerCase(), data.main.temp);
+
         localStorage.setItem("lastCity", cityName);
 
         const updatedRecent = Array.from(new Set([cityName, ...recentCities])).slice(0, 8);
@@ -54,6 +56,53 @@ const startListening = () => {
       console.error(err);
     }
   };
+
+  const getWeatherByLocation = () => {
+  if (!navigator.geolocation) {
+    alert("Geolocation not supported by your browser.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const { latitude, longitude } = position.coords;
+
+      try {
+        // 🗺️ First get city name from coordinates
+        const geoRes = await fetch(
+          `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=7bbc4822f963c2409c4c436893addfaa`
+        );
+        const geoData = await geoRes.json();
+        const detectedCity = geoData[0]?.name || "Your Location";
+
+        // 🌦️ Then get actual weather
+        const weatherRes = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=7bbc4822f963c2409c4c436893addfaa`
+        );
+        const weatherData = await weatherRes.json();
+
+        if (weatherData.cod === 200) {
+          setWeather(weatherData);
+          setCity(detectedCity);
+          localStorage.setItem("lastCity", detectedCity);
+          showWeatherAlert(
+            weatherData.weather[0].main.toLowerCase(),
+            weatherData.main.temp
+          );
+        } else {
+          alert("Unable to fetch weather for your location.");
+        }
+      } catch (error) {
+        console.error("Location fetch error:", error);
+      }
+    },
+    (error) => {
+      alert("Please allow location access to detect your city.");
+      console.error(error);
+    }
+  );
+};
+
 
   const fetchWeatherForCities = async (cityArray) => {
     const results = [];
@@ -132,6 +181,19 @@ const startListening = () => {
     return { eat, hygiene };
   };
 
+  const showWeatherAlert = (condition, temp) => {
+  let message = "";
+
+  if (condition.includes("storm")) message = "⚡ Storm Alert! Stay indoors.";
+  else if (condition.includes("rain") && temp < 25) message = "🌧️ Heavy rain expected — carry an umbrella!";
+  else if (condition.includes("snow")) message = "❄️ Snowy conditions — stay warm!";
+  else if (temp > 38) message = "🥵 High temperature — stay hydrated!";
+  else if (temp < 5) message = "🥶 Very cold weather — dress warmly!";
+
+  if (message) alert(message);
+};
+
+
   return (
     <Router>
       <div className={`app-container ${theme === "dark" ? "dark" : "light"}`}>
@@ -170,6 +232,9 @@ const startListening = () => {
   <button className={`mic-btn ${listening ? "listening" : ""}`} onClick={startListening}>
   🎤
 </button>
+<button className="location-btn" onClick={getWeatherByLocation} title="Use my location">📍</button>
+
+              
 
   {city && (
     <button className="cancel-btn" onClick={() => setCity("")}>
