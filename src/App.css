@@ -249,7 +249,7 @@
 }
 
 .weather-card.rain {
-  background: url('./public/rainy.jpg') center/cover no-repeat;
+  background: url('/rainy.jpg') center/cover no-repeat;
 }
 
 .weather-card.snow {
