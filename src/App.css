@@ -241,39 +241,39 @@
 }
 
 .weather-card.clear {
-  background: url('./client/public/clear.jpeg') center/cover no-repeat;
+  background: url('/images/clear.jpeg') center/cover no-repeat;
 }
 
 .weather-card.clouds {
-  background: url('./client/public/clouds.jpeg') center/cover no-repeat;
+  background: url('/images/clouds.jpeg') center/cover no-repeat;
 }
 
 .weather-card.rain {
-  background: url('./client/public/rainy.jpg') center/cover no-repeat;
+  background: url('/images/rainy.jpg') center/cover no-repeat;
 }
 
 .weather-card.snow {
-  background: url('public/snowy.jpeg') center/cover no-repeat;
+  background: url('/images/snowy.jpeg') center/cover no-repeat;
 }
 
 .weather-card.thunderstorm {
-  background: url('public/storm.jpeg') center/cover no-repeat;
+  background: url('/images/storm.jpeg') center/cover no-repeat;
 }
 
 .weather-card.smoke {
-  background: url('public/smoky.jpeg') center/cover no-repeat;
+  background: url('/images/smoky.jpeg') center/cover no-repeat;
 }
 
 .weather-card.haze {
-  background: url('public/haze.jpeg') center/cover no-repeat;
+  background: url('/images/haze.jpeg') center/cover no-repeat;
 }
 
 .weather-card.drizzle {
-  background: url('public/drizzle.jpg.jpg') center/cover no-repeat;
+  background: url('/images/drizzle.jpg.jpg') center/cover no-repeat;
 }
 
 .weather-card.mist {
-  background: url('public/mist.jpeg') center/cover no-repeat;
+  background: url('/images/mist.jpeg') center/cover no-repeat;
 }
 
 @media (max-width: 768px) {
