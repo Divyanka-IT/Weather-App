@@ -5,6 +5,24 @@ import "./App.css";
 
 function App() {
   const [city, setCity] = useState(localStorage.getItem("lastCity") || "");
+  const [listening, setListening] = useState(false);
+
+const startListening = () => {
+  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+  recognition.lang = "en-IN"; // Indian English
+  recognition.start();
+  setListening(true);
+
+  recognition.onresult = (event) => {
+    const spokenCity = event.results[0][0].transcript;
+    setCity(spokenCity);
+    getWeather(spokenCity);
+    setListening(false);
+  };
+
+  recognition.onerror = () => setListening(false);
+};
+
   const [weather, setWeather] = useState(null);
   const [theme, setTheme] = useState("light");
   const [cityWeatherList, setCityWeatherList] = useState([]);
@@ -142,20 +160,25 @@ function App() {
         <section id="home" className="main-section">
           <div className="main-content">
             <div className="search-bar">
-              <input
-                type="text"
-                placeholder="Enter city..."
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && getWeather(city)}
-              />
-              {city && (
-                <button className="cancel-btn" onClick={() => setCity("")}>
-                  ✖
-                </button>
-              )}
-              <button onClick={() => getWeather(city)}>Search</button>
-            </div>
+  <input
+    type="text"
+    placeholder="Enter city..."
+    value={city}
+    onChange={(e) => setCity(e.target.value)}
+    onKeyDown={(e) => e.key === "Enter" && getWeather(city)}
+  />
+  <button className={`mic-btn ${listening ? "listening" : ""}`} onClick={startListening}>
+  🎤
+</button>
+
+  {city && (
+    <button className="cancel-btn" onClick={() => setCity("")}>
+      ✖
+    </button>
+  )}
+  <button onClick={() => getWeather(city)}>Search</button>
+</div>
+
 
             {weather && (
               <div className={`weather-card main-card ${weather.weather[0].main.toLowerCase()}`}>
