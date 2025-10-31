@@ -1,0 +1,283 @@
+/* Global Layout */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.5s, color 0.5s;
+}
+
+.app-container.dark {
+  --bg: linear-gradient(135deg, #0f172a, #1e293b);
+  --text: #f1f5f9;
+}
+
+.app-container.light {
+  --bg: linear-gradient(135deg, #dbeafe, #bae6fd);
+  --text: #1e293b;
+}
+
+/* 🌤 Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap; /* ✅ prevents cutting off */
+    gap: 10px;
+    justify-content: center; /* center items nicely */
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px; /* ✅ smaller padding to prevent overflow */
+  background: linear-gradient(90deg, #2b5876, #4e4376);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(8px);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box; /* ✅ ensures padding doesn’t push content outside */
+  overflow-x: hidden; /* ✅ stops scroll bar */
+}
+
+
+/* When scrolled, make it slightly opaque or change style */
+.navbar.scrolled {
+  background: rgba(30, 30, 60, 0.9);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Navigation links */
+.nav-links {
+  display: flex;
+  gap: 18px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-links li a:hover {
+  color: #ffcd3c;
+  transform: scale(1.05);
+}
+
+/* Right-side actions */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle,
+.share-btn {
+  background: #ffcd3c;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #222;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover,
+.share-btn:hover {
+  background: #ffe67b;
+  transform: translateY(-2px);
+}
+
+
+
+/* Main Section */
+.main-section {
+  padding-top: 120px; /* ⬆️ increased so navbar doesn't hide search */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+
+
+.main-content {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 2rem 3rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 600px;
+}
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-bar input {
+  padding: 10px;
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  outline: none;
+  width: 60%;
+}
+
+.search-bar button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.search-bar button:hover {
+  background: #2563eb;
+}
+
+/* ====== Weather Card Styles ====== */
+.weather-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  transition: transform 0.3s ease, background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.weather-card:hover {
+  transform: scale(1.05);
+}
+
+/* Backgrounds for weather types */
+.weather-card.clear {
+  background: linear-gradient(135deg, #FFD700, #FF8C00);
+  /* sunny gold */
+}
+
+.weather-card.clouds {
+  background: linear-gradient(135deg, #4e6372, #89a0b0);
+  /* cloudy gray-blue */
+}
+
+.weather-card.rain {
+  background: linear-gradient(135deg, #5a7d9a, #3b4a59);
+  /* rainy blue */
+}
+
+.weather-card.thunderstorm {
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  /* stormy dark */
+}
+
+.weather-card.snow {
+  background: linear-gradient(135deg, #b6e1f9, #dfe9f3);
+  /* snowy white-blue */
+  color: #333;
+}
+
+.weather-card.mist,
+.weather-card.haze {
+  background: linear-gradient(135deg, #8e9eab, #eef2f3);
+  color: #222;
+}
+
+.temp {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.suggestions {
+  margin-top: 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 12px;
+}
+
+/* Other Sections */
+.info-section {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.city-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 1rem 2rem;
+}
+
+.weather-card.clear {
+  background: url('clear.jpeg') center/cover no-repeat;
+}
+
+.weather-card.clouds {
+  background: url('clouds.jpeg') center/cover no-repeat;
+}
+
+.weather-card.rain {
+  background: url('rainy.jpg') center/cover no-repeat;
+}
+
+.weather-card.snow {
+  background: url('snowy.jpeg') center/cover no-repeat;
+}
+
+.weather-card.thunderstorm {
+  background: url('storm.jpeg') center/cover no-repeat;
+}
+
+.weather-card.smoke {
+  background: url('smoky.jpeg') center/cover no-repeat;
+}
+
+.weather-card.haze {
+  background: url('haze.jpeg') center/cover no-repeat;
+}
+
+.weather-card.drizzle {
+  background: url('drizzle.jpg') center/cover no-repeat;
+}
+
+.weather-card.mist {
+  background: url('mist.jpeg') center/cover no-repeat;
+}
+
+@media (max-width: 768px) {
+  .main-section {
+    padding-top: 140px; /* Extra space for mobile navbar height */
+  }
+}
