@@ -276,6 +276,11 @@
   background: url('/images/mist.jpeg') center/cover no-repeat;
 }
 
+.weather-card {
+  color: black !important;
+}
+
+
 @media (max-width: 768px) {
   .main-section {
     padding-top: 140px; /* Extra space for mobile navbar height */
