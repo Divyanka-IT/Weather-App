@@ -22,6 +22,7 @@ function App() {
       const data = await res.json();
       if (data.cod === 200) {
         setWeather(data);
+        setCity("");
         localStorage.setItem("lastCity", cityName);
 
         const updatedRecent = Array.from(new Set([cityName, ...recentCities])).slice(0, 8);
