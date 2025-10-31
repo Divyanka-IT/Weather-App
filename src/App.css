@@ -241,39 +241,39 @@
 }
 
 .weather-card.clear {
-  background: url('clear.jpeg') center/cover no-repeat;
+  background: url('./client/public/clear.jpeg') center/cover no-repeat;
 }
 
 .weather-card.clouds {
-  background: url('clouds.jpeg') center/cover no-repeat;
+  background: url('./client/public/clouds.jpeg') center/cover no-repeat;
 }
 
 .weather-card.rain {
-  background: url('rainy.jpg') center/cover no-repeat;
+  background: url('./client/public/rainy.jpg') center/cover no-repeat;
 }
 
 .weather-card.snow {
-  background: url('snowy.jpeg') center/cover no-repeat;
+  background: url('./client/public/snowy.jpeg') center/cover no-repeat;
 }
 
 .weather-card.thunderstorm {
-  background: url('storm.jpeg') center/cover no-repeat;
+  background: url('./client/public/storm.jpeg') center/cover no-repeat;
 }
 
 .weather-card.smoke {
-  background: url('smoky.jpeg') center/cover no-repeat;
+  background: url('./client/public/smoky.jpeg') center/cover no-repeat;
 }
 
 .weather-card.haze {
-  background: url('haze.jpeg') center/cover no-repeat;
+  background: url('./client/public/haze.jpeg') center/cover no-repeat;
 }
 
 .weather-card.drizzle {
-  background: url('drizzle.jpg') center/cover no-repeat;
+  background: url('./client/public/drizzle.jpg') center/cover no-repeat;
 }
 
 .weather-card.mist {
-  background: url('mist.jpeg') center/cover no-repeat;
+  background: url('./client/public/mist.jpeg') center/cover no-repeat;
 }
 
 @media (max-width: 768px) {
