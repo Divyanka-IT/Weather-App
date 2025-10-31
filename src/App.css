@@ -63,6 +63,11 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
+html {
+  scroll-padding-top: 80px;
+  scroll-behavior: smooth;
+}
+
 /* Navigation links */
 .nav-links {
   display: flex;
