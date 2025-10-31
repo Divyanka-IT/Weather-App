@@ -241,15 +241,15 @@
 }
 
 .weather-card.clear {
-  background: url('public/clear.jpeg') center/cover no-repeat;
+  background: url('./client/public/clear.jpeg') center/cover no-repeat;
 }
 
 .weather-card.clouds {
-  background: url('public/clouds.jpeg') center/cover no-repeat;
+  background: url('./client/public/clouds.jpeg') center/cover no-repeat;
 }
 
 .weather-card.rain {
-  background: url('public/rainy.jpg') center/cover no-repeat;
+  background: url('./client/public/rainy.jpg') center/cover no-repeat;
 }
 
 .weather-card.snow {
