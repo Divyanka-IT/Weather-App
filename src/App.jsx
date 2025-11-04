@@ -1,3 +1,4 @@
+import WeatherGraph from "./components/WeatherGraph";
 import { useEffect, useState } from "react";
 import { HashRouter as Router } from "react-router-dom";
 import cities from "./data/cities.json";
@@ -254,6 +255,12 @@ const startListening = () => {
                 <p>Wind: {weather.wind.speed} m/s</p>
               </div>
             )}
+
+            
+            {weather && weather.coord && (
+              <WeatherGraph lat={weather.coord.lat} lon={weather.coord.lon} />
+            )}
+
 
             {weather && (
               <div className="suggestions">
