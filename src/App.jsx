@@ -27,6 +27,8 @@ const startListening = () => {
 };
 
   const [weather, setWeather] = useState(null);
+   const [aqi, setAqi] = useState(null);
+
   const [theme, setTheme] = useState("light");
   const [cityWeatherList, setCityWeatherList] = useState([]);
   const [recentCities, setRecentCities] = useState(
@@ -57,6 +59,23 @@ const startListening = () => {
       }
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const fetchAQI = async (lat, lon) => {
+    try {
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=7bbc4822f963c2409c4c436893addfaa`
+      );
+      const data = await res.json();
+      console.log("AQI data:", data); // 👈 add this line
+      if (data.list && data.list[0]) {
+        setAqi(data.list[0].main.aqi);
+      } else {
+        setAqi(null);
+      }
+    } catch (err) {
+      console.error("AQI fetch error:", err);
     }
   };
 
@@ -255,6 +274,15 @@ const startListening = () => {
                 <p className="desc">{weather.weather[0].description}</p>
                 <p>Humidity: {weather.main.humidity}%</p>
                 <p>Wind: {weather.wind.speed} m/s</p>
+                {aqi && (
+                  <div className="aqi-box">
+                    <p><b>Air Quality Index:</b> {aqi}</p>
+                    <p className="aqi-desc">
+                      {["Good 🌿", "Fair 🙂", "Moderate 😐", "Poor 😷", "Very Poor ☠️"][aqi - 1]}
+                    </p>
+                  </div>
+                )}
+
               </div>
             )}
 
