@@ -1,4 +1,6 @@
 import WeatherGraph from "./components/WeatherGraph";
+import SunriseSunset from "./components/SunriseSunset";
+
 import { useEffect, useState } from "react";
 import { HashRouter as Router } from "react-router-dom";
 import cities from "./data/cities.json";
@@ -255,6 +257,15 @@ const startListening = () => {
                 <p>Wind: {weather.wind.speed} m/s</p>
               </div>
             )}
+
+            {weather && weather.sys && (
+                <SunriseSunset
+                sunrise={weather.sys.sunrise}
+                sunset={weather.sys.sunset}
+                timezone={weather.timezone}
+              />
+            )}
+
 
             
             {weather && weather.coord && (
