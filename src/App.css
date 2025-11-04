@@ -363,7 +363,7 @@ html {
   transform: scale(1.05);
 }
 
-aqi-box {
+.aqi-box {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   padding: 10px;
