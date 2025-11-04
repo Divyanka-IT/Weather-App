@@ -47,6 +47,7 @@ const startListening = () => {
         setWeather(data);
         setCity("");
         showWeatherAlert(data.weather[0].main.toLowerCase(), data.main.temp);
+        fetchAQI(data.coord.lat, data.coord.lon);
 
         localStorage.setItem("lastCity", cityName);
 
